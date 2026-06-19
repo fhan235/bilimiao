@@ -562,6 +562,7 @@ private fun WatchLaterPageContent(
                             progress = progressRatio,
                             playNum = item.left_text,
                             damukuNum = item.right_text,
+                            aid = item.aid.toString(),
                             onClick = {
                                 if (!enableEdit) {
                                     viewModel.openVideo(item)

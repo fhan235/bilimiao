@@ -20,6 +20,9 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,6 +48,8 @@ import cn.a10miaomiao.bilimiao.compose.assets.bilimiaoicons.common.Danmukunum
 import cn.a10miaomiao.bilimiao.compose.assets.bilimiaoicons.common.Playnum
 import cn.a10miaomiao.bilimiao.compose.assets.bilimiaoicons.common.Upper
 import cn.a10miaomiao.bilimiao.compose.common.foundation.htmlText
+import com.a10miaomiao.bilimiao.comm.entity.video.VideoStatRatioInfo
+import com.a10miaomiao.bilimiao.comm.store.VideoStatRatioStore
 import com.a10miaomiao.bilimiao.comm.utils.NumberUtil
 import com.a10miaomiao.bilimiao.comm.utils.UrlUtil
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -64,8 +69,24 @@ fun VideoItemBox(
     duration: String? = null,
     progress: Float = -1f,
     isHtml: Boolean = false,
+    aid: String? = null,
+    statRatio: VideoStatRatioInfo? = null,
+    statRatioLoading: Boolean = false,
     onClick: (() -> Unit)? = null,
 ) {
+    // 若调用方未显式传 statRatio，则根据 aid 自动订阅 Store
+    val autoRatioState = if (statRatio == null && !aid.isNullOrBlank()) {
+        VideoStatRatioStore.observe(aid).collectAsState().value
+    } else null
+    LaunchedEffect(aid) {
+        if (statRatio == null && !aid.isNullOrBlank()) {
+            VideoStatRatioStore.requestIfNeeded(aid)
+        }
+    }
+    val effectiveRatio = statRatio
+        ?: (autoRatioState as? VideoStatRatioStore.State.Success)?.info
+    val effectiveLoading = statRatioLoading
+        || autoRatioState is VideoStatRatioStore.State.Loading
 
     Row(
         modifier = Modifier
@@ -117,6 +138,20 @@ fun VideoItemBox(
                         modifier = Modifier.fillMaxWidth()
                             .align(Alignment.BottomStart),
                         drawStopIndicator = { }
+                    )
+                }
+                if (effectiveRatio != null) {
+                    VideoStatRatioBadge(
+                        info = effectiveRatio,
+                        modifier = Modifier
+                            .align(Alignment.TopStart)
+                            .padding(4.dp),
+                    )
+                } else if (effectiveLoading) {
+                    VideoStatRatioBadgeLoading(
+                        modifier = Modifier
+                            .align(Alignment.TopStart)
+                            .padding(4.dp),
                     )
                 }
             }

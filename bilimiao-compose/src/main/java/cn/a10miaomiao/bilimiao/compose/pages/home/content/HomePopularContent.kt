@@ -264,6 +264,7 @@ internal fun HomePopularContent() {
                     upperName = it.rightDesc1,
                     remark = it.rightDesc2,
                     duration = it.coverRightText1,
+                    aid = it.base?.param,
                     onClick = {
                         viewModel.toVideoDetail(it)
                     }

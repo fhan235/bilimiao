@@ -422,6 +422,7 @@ internal fun UserSeasonDetailContent(
                         playNum = it.stat?.view.toString(),
                         damukuNum = it.stat?.danmaku.toString(),
                         duration = NumberUtil.converDuration(it.page?.duration ?: 0),
+                        aid = it.aid.toString(),
                         onClick = {
                             viewModel.openVideo(it)
                         }

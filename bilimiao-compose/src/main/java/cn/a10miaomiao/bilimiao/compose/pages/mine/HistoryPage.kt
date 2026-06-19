@@ -762,6 +762,8 @@ private fun HistoryListView(
                             },
                             progress = progressRatio,
                             isHtml = true,
+                            // 仅普通视频（非番剧）显示点赞率/投币率
+                            aid = if (item.cardOgv == null) item.oid.toString() else null,
                             onClick = {
                                 if (!enableEdit) {
                                     viewModel.toVideoDetail(item)

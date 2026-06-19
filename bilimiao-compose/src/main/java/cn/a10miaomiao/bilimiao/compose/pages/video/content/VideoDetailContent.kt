@@ -306,6 +306,7 @@ fun VideoDetailContent(
                 playNum = it.stat?.view?.let(NumberUtil::converString),
                 damukuNum = it.stat?.danmaku?.let(NumberUtil::converString),
                 duration = NumberUtil.converDuration(it.duration),
+                aid = it.aid.toString(),
                 onClick = {
                     viewModel.toVideoPage(it.aid.toString())
                 }

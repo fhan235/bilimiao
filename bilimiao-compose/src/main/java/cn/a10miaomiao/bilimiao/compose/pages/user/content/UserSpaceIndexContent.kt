@@ -163,6 +163,7 @@ fun UserSpaceIndexContent(
                             damukuNum = it.danmaku,
                             duration = NumberUtil.converDuration(it.duration),
                             remark = NumberUtil.converCTime(it.ctime),
+                            aid = it.param,
                             onClick = {
                                 viewModel.toVideoDetail(it)
                             }
@@ -293,6 +294,7 @@ fun UserSpaceIndexContent(
                                 damukuNum = it.danmaku,
                                 duration = NumberUtil.converDuration(it.duration),
                                 upperName = it.author,
+                                aid = it.param,
                                 onClick = {
                                     viewModel.toVideoDetail(it)
                                 }
@@ -330,6 +332,7 @@ fun UserSpaceIndexContent(
                                 damukuNum = it.danmaku,
                                 duration = NumberUtil.converDuration(it.duration),
                                 upperName = it.author,
+                                aid = it.param,
                                 onClick = {
                                     viewModel.toVideoDetail(it)
                                 }

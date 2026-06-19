@@ -484,6 +484,7 @@ internal fun UserFavouriteDetailContent(
                         playNum = it.cnt_info.play,
                         damukuNum = it.cnt_info.danmaku,
                         duration = NumberUtil.converDuration(it.duration),
+                        aid = it.id,
                         onClick = {
                             viewModel.openVideo(it)
                         }

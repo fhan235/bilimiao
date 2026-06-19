@@ -39,6 +39,7 @@ private fun DynArchiveBox(
         pic = dynPgc.cover,
         duration = dynPgc.coverLeftText1,
         remark = dynPgc.coverLeftText2 + "  " + dynPgc.coverLeftText3,
+        aid = dynPgc.avid.toString(),
         onClick = {
             pageNavigation.navigate(VideoDetailPage(
                 id = dynPgc.bvid,

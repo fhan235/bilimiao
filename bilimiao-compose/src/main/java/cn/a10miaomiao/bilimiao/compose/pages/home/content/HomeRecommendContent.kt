@@ -53,10 +53,12 @@ import com.a10miaomiao.bilimiao.comm.entity.ResponseData
 import com.a10miaomiao.bilimiao.comm.entity.ResultInfo
 import com.a10miaomiao.bilimiao.comm.entity.home.HomeRecommendInfo
 import com.a10miaomiao.bilimiao.comm.entity.home.RecommendCardInfo
+import com.a10miaomiao.bilimiao.comm.entity.video.VideoStatRatioInfo
 import com.a10miaomiao.bilimiao.comm.network.BiliApiService
 import com.a10miaomiao.bilimiao.comm.network.BiliGRPCHttp
 import com.a10miaomiao.bilimiao.comm.network.MiaoHttp.Companion.json
 import com.a10miaomiao.bilimiao.comm.store.FilterStore
+import com.a10miaomiao.bilimiao.comm.store.VideoStatRatioStore
 import com.a10miaomiao.bilimiao.comm.utils.UrlUtil
 import com.a10miaomiao.bilimiao.store.WindowStore
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -222,6 +224,7 @@ internal fun HomeRecommendContent() {
             )
         ) {
             items(list, { it.idx }) {
+                val aid = it.args?.aid
                 if (listStyle == 0) {
                     VideoItemBox(
                         modifier = Modifier.padding(
@@ -234,6 +237,7 @@ internal fun HomeRecommendContent() {
                         playNum = it.cover_left_text_1,
                         damukuNum = it.cover_left_text_2,
                         duration = it.cover_right_text,
+                        aid = aid,
                         onClick = {
                             viewModel.toVideoDetail(it)
                         }
@@ -247,6 +251,7 @@ internal fun HomeRecommendContent() {
                         playNum = it.cover_left_text_1,
                         damukuNum = it.cover_left_text_2,
                         duration = it.cover_right_text,
+                        aid = aid,
                         onClick = {
                             viewModel.toVideoDetail(it)
                         }

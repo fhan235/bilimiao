@@ -343,6 +343,7 @@ fun UserMedialistDetailContent(
                         playNum = item.cnt_info.play.toString(),
                         damukuNum = item.cnt_info.danmaku.toString(),
                         duration = NumberUtil.converDuration(item.duration),
+                        aid = item.id,
                         onClick = {
                             viewModel.openVideo(item)
                         }

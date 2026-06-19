@@ -189,6 +189,7 @@ internal fun RankListContent(
                         upperName = item.name,
                         playNum = item.play.toString(),
                         damukuNum = item.danmaku.toString(),
+                        aid = item.param,
                         onClick = {
                             viewModel.toVideoDetail(item)
                         }

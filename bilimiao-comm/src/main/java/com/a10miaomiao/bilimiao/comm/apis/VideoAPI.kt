@@ -24,6 +24,21 @@ class VideoAPI {
     }
 
     /**
+     * 视频信息（web 端轻量接口，仅用于点赞率/投币率分析等只读场景）
+     * 返回 stat 中的 view/like/coin 等公开数据。
+     */
+    fun webView(id: String, type: String = "AV") = MiaoHttp.request {
+        url = BiliApiService.biliApi(
+            "x/web-interface/view",
+            when (type.lowercase()) {
+                "av" -> "aid" to id
+                "bv" -> "bvid" to id
+                else -> throw IllegalArgumentException("Unsupported video type $type")
+            }
+        )
+    }
+
+    /**
      * 点👍
      */
     fun like(

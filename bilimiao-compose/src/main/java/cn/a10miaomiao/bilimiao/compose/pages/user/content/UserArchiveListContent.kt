@@ -73,6 +73,7 @@ fun UserArchiveListContent(
                 damukuNum = it.danmaku,
                 remark = NumberUtil.converCTime(it.ctime),
                 duration = NumberUtil.converDuration(it.duration),
+                aid = it.param,
                 onClick = {
                     viewModel.toVideoDetail(it)
                 }

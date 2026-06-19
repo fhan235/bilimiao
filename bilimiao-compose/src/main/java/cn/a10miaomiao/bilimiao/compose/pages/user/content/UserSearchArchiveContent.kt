@@ -165,6 +165,7 @@ fun UserSearchArchiveContent(
                 remark = NumberUtil.converCTime(it.ctime),
                 duration = NumberUtil.converDuration(it.duration),
                 isHtml = true,
+                aid = it.aid.toString(),
                 onClick = {
                     viewModel.toDetailPage(it)
                 }

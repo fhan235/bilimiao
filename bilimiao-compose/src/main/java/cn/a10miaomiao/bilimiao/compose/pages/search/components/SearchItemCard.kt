@@ -29,6 +29,7 @@ internal fun SearchItemCard(
                 damukuNum = NumberUtil.converString(avItem.danmaku),
                 duration = avItem.duration,
                 isHtml = true,
+                aid = avItem.share?.video?.bvid,
                 onClick = onClick
             )
         }

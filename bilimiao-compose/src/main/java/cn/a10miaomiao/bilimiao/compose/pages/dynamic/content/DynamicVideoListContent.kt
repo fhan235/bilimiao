@@ -262,6 +262,7 @@ fun DynamicVideoListContent() {
                         pic = it.dynamicContent.pic,
                         remark = it.dynamicContent.remark,
                         duration = it.dynamicContent.duration,
+                        aid = it.dynamicContent.id,
                     )
                     DynamicModuleStatBox(
                         share = it.share,

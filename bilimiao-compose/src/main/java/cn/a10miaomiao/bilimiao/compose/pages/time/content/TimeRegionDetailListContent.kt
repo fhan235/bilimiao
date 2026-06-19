@@ -216,6 +216,7 @@ fun TimeRegionDetailListContent(
                     playNum = it.play,
                     damukuNum = it.video_review,
                     duration = NumberUtil.converDuration(it.duration),
+                    aid = it.id,
                     onClick = {
                         viewModel.toVideoDetail(it)
                     }

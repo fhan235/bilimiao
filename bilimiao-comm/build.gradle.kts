@@ -48,7 +48,7 @@ android {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.12.0"  // 相当于proto编译器
+        artifact = "com.google.protobuf:protoc:3.25.5"  // 相当于proto编译器（升级以支持 macOS arm64）
     }
     plugins {
         id("pbandk") {
