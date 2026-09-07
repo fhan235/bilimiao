@@ -13,8 +13,9 @@ data class MediasInfo(
     val cnt_info: CntInfo,
     val ugc: Ugc? = null,
     val ogv: Ogv? = null,
+    val attr: Int = 0,
+    val fav_time: Long = 0,
 ) {
-
     @Serializable
     data class CntInfo(
         val coin: Int = 0,

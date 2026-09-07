@@ -35,6 +35,7 @@ import cn.a10miaomiao.bilimiao.compose.base.ComposePage
 import cn.a10miaomiao.bilimiao.compose.common.diViewModel
 import cn.a10miaomiao.bilimiao.compose.common.foundation.pagerTabIndicatorOffset
 import cn.a10miaomiao.bilimiao.compose.common.localContainerView
+import cn.a10miaomiao.bilimiao.compose.common.localPageNavigation
 import cn.a10miaomiao.bilimiao.compose.common.mypage.PageConfig
 import cn.a10miaomiao.bilimiao.compose.common.mypage.PageListener
 import cn.a10miaomiao.bilimiao.compose.common.mypage.rememberMyMenu
@@ -105,9 +106,13 @@ private fun UserFavouritePageContent(
         }
     }
 
+    val pageNavigation = localPageNavigation()
+
     fun menuItemClick(view: View, item: MenuItemPropInfo) {
         if (item.key == MenuKeys.add) {
             showAddDialog = true
+        } else if (item.key == MenuKeys.organize) {
+            pageNavigation.navigate(FavouriteOrganizerPage())
         }
     }
 
@@ -123,6 +128,11 @@ private fun UserFavouritePageContent(
                         key = MenuKeys.add
                         title = "新建收藏夹"
                         iconFileName = "ic_add_white_24dp"
+                    }
+                    myItem {
+                        key = MenuKeys.organize
+                        title = "一键整理"
+                        iconFileName = "ic_nav_fav"
                     }
                 }
             }
